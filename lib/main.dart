@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -131,15 +129,16 @@ class _CryptoCoinScreenState extends State<CryptoCoinScreen> {
   @override
   void didChangeDependencies() {
     final args = ModalRoute.of(context)?.settings.arguments;
-    if(args == null){
-      log('You must provide args');
-      return;
-    }
-    if (args is! String){
-      log('You must provide String args');
-      return;
-    }
-    coinName = args;
+    assert(args != null && args is String, 'You must provide String args');
+    // if(args == null){
+    //   log('You must provide args');
+    //   return;
+    // }
+    // if (args is! String){
+    //   log('You must provide String args');
+    //   return;
+    // }
+    coinName = args as String;
     setState(() {
       
     });
