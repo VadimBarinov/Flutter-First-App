@@ -2,9 +2,7 @@ import 'package:crypto_coins_list/features/crypto_list/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class CryptoListScreen extends StatefulWidget {
-  const CryptoListScreen({super.key, required this.title});
- 
-  final String title;
+  const CryptoListScreen({super.key});
 
   @override
   State<CryptoListScreen> createState() => _CryptoListScreenState();
