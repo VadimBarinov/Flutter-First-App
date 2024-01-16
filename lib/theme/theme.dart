@@ -6,6 +6,7 @@ final darkTheme = ThemeData(
         dividerTheme: const DividerThemeData(color: Colors.white24),
         listTileTheme: const ListTileThemeData(iconColor: Colors.white),
         appBarTheme: const AppBarTheme(
+          elevation: 0,
           iconTheme: IconThemeData(
             color: Colors.white,
           ),
