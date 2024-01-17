@@ -1,8 +1,14 @@
-import 'package:crypto_coins_list/repositories/crypto_coins/models/crypto_coin.dart';
+
+import 'package:crypto_coins_list/repositories/crypto_coins/crypto_coins.dart';
 import 'package:dio/dio.dart';
 
-class CryptoCoinsRepository {
+class CryptoCoinsRepository implements AbstractCoinsRepository{
 
+  CryptoCoinsRepository({required this.dio});
+  
+  final Dio dio;
+
+  @override
   Future <List<CryptoCoin>> getCoinsList() async {    // асинхронный метод
 
     // await так как ожидаем когда этот метод совершится и отдаст с сервера результат
