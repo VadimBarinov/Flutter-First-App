@@ -10,24 +10,26 @@ part "crypto_list_state.dart";
 class CryptoListBloc extends Bloc<CryptoListEvent, CryptoListState> {
   CryptoListBloc(this.coinsRepository) : super(CryptoListInitial()) {
 
-    on<LoadCryptoList>((event, emit) async {
-      try {
-        // только при первом заходе на экран будет показываться индикатор загрузки
-        if (state is! CryptoListLoaded){
-          emit(CryptoListLoading()); 
-        }
-
-        final cryptoList = await coinsRepository.getCoinsList();
-        emit(CryptoListLoaded(coinsList: cryptoList));
-      } catch (e) {
-        emit(CryptoListLoadingFailure(exception: e));
-      }
-      finally{
-        event.completer?.complete();
-      }
-    });
+    on<LoadCryptoList>(_load);
   }
 
   final AbstractCoinsRepository coinsRepository;
+
+  Future<void> _load(
+    LoadCryptoList event,
+    Emitter<CryptoListState> emit,
+  ) async {
+    try {
+      if (state is! CryptoListLoaded) {
+        emit(CryptoListLoading());
+      }
+      final coinsList = await coinsRepository.getCoinsList();
+      emit(CryptoListLoaded(coinsList: coinsList));
+    } catch (e) {
+      emit(CryptoListLoadingFailure(exception: e));
+    } finally {
+      event.completer?.complete();
+    }
+  }
 
 }
