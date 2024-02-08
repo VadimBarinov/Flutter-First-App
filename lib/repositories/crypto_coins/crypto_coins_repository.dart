@@ -12,7 +12,7 @@ class CryptoCoinsRepository implements AbstractCoinsRepository{
   Future <List<CryptoCoin>> getCoinsList() async {    // асинхронный метод
 
     // await так как ожидаем когда этот метод совершится и отдаст с сервера результат
-    final response = await Dio().get(
+    final response = await dio.get(
       'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,BNB,AVAX,ATM,BOLT,CPT,DDD,FTT,BNT,BLZ&tsyms=USD'
     );
 
@@ -36,7 +36,7 @@ class CryptoCoinsRepository implements AbstractCoinsRepository{
   @override
   Future <CryptoCoinDetail> getCoinDetails(String currencyCode) async {
 
-    final response = await Dio().get(
+    final response = await dio.get(
       'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=$currencyCode&tsyms=USD'
     );
 
