@@ -22,11 +22,14 @@ dependencies:
   talker_dio_logger: ^4.0.1
   talker_bloc_logger: ^4.0.1
   firebase_core: ^2.25.4
+  json_annotation: ^4.8.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.1
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.8
 
 flutter:
   uses-material-design: true
