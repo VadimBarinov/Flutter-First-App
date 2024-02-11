@@ -14,16 +14,9 @@ import 'package:talker_flutter/talker_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   final talker = TalkerFlutter.init();
   GetIt.I.registerSingleton(talker);
   GetIt.I<Talker>().debug('Talker started...');
-
-  final app = await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  talker.info(app.options.projectId);
 
   final dio = Dio();
   dio.interceptors.add(TalkerDioLogger(
@@ -46,8 +39,7 @@ void main() async {
 
   FlutterError.onError = (details) => GetIt.I<Talker>().handle(details.exception, details.stack);
 
-  runZonedGuarded(() => runApp(const CryptoCurrenciesListApp()),
-    (e, st){
-      GetIt.I<Talker>().handle(e, st);
-  }); 
+  runZonedGuarded(() => runApp(const CryptoCurrenciesListApp()), (e, st) {
+    GetIt.I<Talker>().handle(e, st);
+  });
 }
